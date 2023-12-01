@@ -1,79 +1,66 @@
 package com.restauranteaplication;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
+import com.restauranteaplication.adapter.RecipeAdapter;
+import com.restauranteaplication.model.Recipe;
 
-import com.restauranteaplication.adapter.FoodAdapter;
-import com.restauranteaplication.databinding.ActivityMainBinding;
-import com.restauranteaplication.model.Food;
-
-import java.sql.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<Food> foodList = new ArrayList<>();
-    private ActivityMainBinding binding;
-    private FoodAdapter foodAdapter;
+    private List<Recipe> recipeList = new ArrayList<>();
+    private RecipeAdapter recipeAdapter;
+    private GetRecipeData getRecipeData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
-        RecyclerView recyclerViewFood = binding.RecyclerViewFood;
-        recyclerViewFood.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewFood.setHasFixedSize(true);
-        foodAdapter = new FoodAdapter(foodList, this);
-        recyclerViewFood.setAdapter(foodAdapter);
-        getFood();
+        RecyclerView recyclerViewRecipe = findViewById(R.id.rv_recipeList);
+        recyclerViewRecipe.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewRecipe.setHasFixedSize(true);
+
+        recipeAdapter = new RecipeAdapter(recipeList, this);
+        recyclerViewRecipe.setAdapter(recipeAdapter);
+
+        getRecipeData = new GetRecipeData(this);
+
+        EditText etSearchQuery = findViewById(R.id.et_searchInput);
+
+        // Botão para pesquisar receitas (substitua com o ID do seu botão)
+        findViewById(R.id.btn_searchMeal).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Obtenha o texto digitado pelo usuário
+                String searchQuery = etSearchQuery.getText().toString();
+
+                // Chame o método para obter receitas quando o botão for clicado
+                getRecipes(searchQuery);
+            }
+        });
     }
 
-    private void getFood(){
-        Food food1 = new Food(
-                R.drawable.food1,
-                "Food 1",
-                "Descrição da 1a comida! Ingredientes e etc e blablabla",
-                "$ 10"
-        );
-        foodList.add(food1);
-
-        Food food2 = new Food(
-                R.drawable.food2,
-                "Food 2",
-                "Descrição da 2a comida! Ingredientes e etc e blablabla",
-                "$ 20"
-        );
-        foodList.add(food2);
-
-        Food food3 = new Food(
-                R.drawable.food3,
-                "Food 3",
-                "Descrição da 3a comida! Ingredientes e etc e blablabla",
-                "$ 30"
-        );
-        foodList.add(food3);
-
-        Food food4 = new Food(
-                R.drawable.food4,
-                "Food 4",
-                "Descrição da 4a comida! Ingredientes e etc e blablabla",
-                "$ 40"
-        );
-        foodList.add(food4);
-
-        Food food5 = new Food(
-                R.drawable.food5,
-                "Food 5",
-                "Descrição da 5a comida! Ingredientes e etc e blablabla",
-                "$ 50"
-        );
-        foodList.add(food5);
-
+    private void getRecipes(String searchQuery) {
+        // Limpa a lista atual antes de adicionar novas receitas
+        recipeList.clear();
+        getRecipeData.getRecipeData(searchQuery);
     }
+
+    public void updateRecipeList(List<Recipe> recipes) {
+        // Atualiza a lista de receitas e notifica o adapter
+        recipeList.addAll(recipes);
+        recipeAdapter.notifyDataSetChanged();
+    }
+
+    // Adicione outros métodos conforme necessário, como onDeleteRecipeClick para lidar com a exclusão
 }
