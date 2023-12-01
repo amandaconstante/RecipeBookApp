@@ -14,7 +14,8 @@ Ao pressionar o botão "Search Meal", o aplicativo retorna uma lista de receitas
 As receitas são exibidas em uma lista, com detalhes como nome, categoria e instruções.
 Os usuários podem rolar para ver mais receitas.
 </br>
-**Antes de construir e executar o aplicativo, certifique-se de ter e instalado Android Studio instalado.**
+</br>
+>**Antes de construir e executar o aplicativo, certifique-se de ter o Android Studio instalado.**
 ### Procedimentos para Construção e Execução
 **1. Clonar o Repositório:**
 
