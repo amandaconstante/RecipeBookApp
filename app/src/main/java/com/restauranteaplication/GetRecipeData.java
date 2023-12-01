@@ -68,7 +68,7 @@ public class GetRecipeData {
                         } catch (JSONException e) {
                             // Handle the case when the "meals" value is null or not a JSON array
                             e.printStackTrace();
-                            Toast.makeText(mainActivity, "Error: Invalid response format", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mainActivity, "Recipe not found", Toast.LENGTH_SHORT).show();
                             Log.e("API_ERROR", "Error parsing JSON: " + e.toString());
                         }
                     }
