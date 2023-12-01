@@ -19,7 +19,7 @@ Os usuários podem rolar para ver mais receitas.
 
 * Clone este repositório do GitHub para o seu ambiente de desenvolvimento local.
 ```
-git clone https://github.com/HenryAiroso/QualOTempo.git
+git clone https://github.com/amandaconstante/RecipeBookApp
 ```
 
 **2. Abrir Projeto no Android Studio:**
