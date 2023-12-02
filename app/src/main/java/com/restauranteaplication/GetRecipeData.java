@@ -61,12 +61,12 @@ public class GetRecipeData {
                                     Toast.makeText(mainActivity, "No meals found", Toast.LENGTH_SHORT).show();
                                 }
                             } else {
-                                // Handle the case when the key "meals" is not present in the response
+                                // Toast para aviso se formato invalido
                                 Toast.makeText(mainActivity, "Error: Invalid response format", Toast.LENGTH_SHORT).show();
                                 Log.e("API_ERROR", "Error: Invalid response format. Key 'meals' not found.");
                             }
                         } catch (JSONException e) {
-                            // Handle the case when the "meals" value is null or not a JSON array
+                            // retornou valor nullo ou não JSON
                             e.printStackTrace();
                             Toast.makeText(mainActivity, "Recipe not found", Toast.LENGTH_SHORT).show();
                             Log.e("API_ERROR", "Error parsing JSON: " + e.toString());

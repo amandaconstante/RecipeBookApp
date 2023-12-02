@@ -62,5 +62,4 @@ public class MainActivity extends AppCompatActivity {
         recipeAdapter.notifyDataSetChanged();
     }
 
-    // Adicione outros métodos conforme necessário, como onDeleteRecipeClick para lidar com a exclusão
 }
